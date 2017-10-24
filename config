@@ -1,0 +1,293 @@
+################################################################################################
+####MOD KEY ####################################################################################
+################################################################################################
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+################################################################################################
+
+################################################################################################
+## FONT ######################################################################################
+################################################################################################
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:System San Francisco Display 10
+################################################################################################
+
+################################################################################################
+## EXTRA #######################################################################################
+################################################################################################
+
+# set default desktop layout (default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+new_window pixel 3
+new_float pixel 3
+
+# Hide borders
+hide_edge_borders none
+
+
+focus_follows_mouse yes
+
+################################################################################################
+
+################################################################################################
+## BINDS #######################################################################################
+################################################################################################
+
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# kill focused window
+bindsym $mod+q kill
+
+# start program launcher
+bindsym $mod+g exec "rofi -combi-modi window,run -show combi -modi combi -fullscreen -padding 300"
+
+# Start Applications
+bindsym $mod+F9 exec chromium
+bindsym $mod+F10 exec chromium --incognito
+bindsym $mod+F11 exec emacs
+bindsym $mod+F12 exec thunar
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+################################################################################################
+
+################################################################################################
+## STARTUP #####################################################################################
+################################################################################################
+exec feh WallPaper/Sea.png --bg-fill
+exec_always --no-startup-id ~/.i3/launch.sh
+exec compton -b
+exec --no-startup-id clipit
+exec sudo create_ap --config .wifi
+################################################################################################
+
+################################################################################################
+## NAVIGATION ##################################################################################
+################################################################################################
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+i focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+################################################################################################
+
+################################################################################################
+## WORKSPACES ##################################################################################
+################################################################################################
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# change borders
+bindsym $mod+shift+f5 border normal
+bindsym $mod+shift+f6 border none
+bindsym $mod+shift+f7 border pixel 3
+
+# split orientation
+bindsym $mod+o split h;exec notify-send 'tile horizontally'
+bindsym $mod+p split v;exec notify-send 'tile vertically'
+bindsym $mod+shift+o split toggle
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+y fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+z layout stacking
+bindsym $mod+x layout toggle split
+bindsym $mod+c layout tabbed
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Workspace names
+
+set $workspace1 "1 Web Browser "
+set $workspace2 "2 Terminal "
+set $workspace3 "3 Editor "
+set $workspace4 "4 Music Player "
+set $workspace5 "5 Text  "
+set $workspace6 "6 Database "
+set $workspace7 "7 Discord "
+set $workspace8 "8"
+set $workspace9 "9"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+
+bindsym $mod+Ctrl+1 move container to workspace $workspace1; workspace $workspace1
+bindsym $mod+Ctrl+2 move container to workspace $workspace2; workspace $workspace2
+bindsym $mod+Ctrl+3 move container to workspace $workspace3; workspace $workspace3
+bindsym $mod+Ctrl+4 move container to workspace $workspace4; workspace $workspace4
+bindsym $mod+Ctrl+5 move container to workspace $workspace5; workspace $workspace5
+bindsym $mod+Ctrl+6 move container to workspace $workspace6; workspace $workspace6
+bindsym $mod+Ctrl+7 move container to workspace $workspace7; workspace $workspace7
+bindsym $mod+Ctrl+8 move container to workspace $workspace8; workspace $workspace8
+bindsym $mod+Ctrl+9 move container to workspace $workspace9; workspace $workspace9
+
+assign [class="Chromium"] $workspace1
+assign [class="URxvt"] $workspace2
+assign [class="Atom"] $workspace3
+assign [class="Emacs"] $workspace3
+assign [class="discord"] $workspace7
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+################################################################################################
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym i resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Lock screen
+bindsym $mod+shift-x exec --no-startup-id blurlock
+
+# Theme colors
+# class                 border  backgr. text    indic.  child_border
+client.focused          #8CA3B9 #8CA3B9 #222222
+client.focused_inactive #304153 #343D46 #ffffff
+client.unfocused        #304153 #343D46 #ffffff
+client.urgent           #900000 #6ca05a #B2C7D2
+client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+client.background       #2B2C2B
+
+#############################
+### settings for i3-gaps: ###
+#############################
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer -4
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
