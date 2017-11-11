@@ -1,3 +1,13 @@
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq package-list '(
 		     neotree
 		     matlab-mode
@@ -5,15 +15,10 @@
 		     auctex
 		     darkokai-theme
 		     company
-             clean-aindent-mode
-             dtrt-indent
-             ws-butler
+		     clean-aindent-mode
+		     dtrt-indent
+		     ws-butler
 		     ))
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -34,9 +39,6 @@
 (setq inhibit-startup-message t)
 
 (show-paren-mode 1)
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (setq backup-directory-alist
       `((".*" . ,"~/.emacs.d/tmp/")))
@@ -123,7 +125,7 @@
     ("6ee6f99dc6219b65f67e04149c79ea316ca4bcd769a9e904030d38908fd7ccf9" "8ed752276957903a270c797c4ab52931199806ccd9f0c3bb77f6f4b9e71b9272" default)))
  '(package-selected-packages
    (quote
-    (ws-butler drtr-indent company company-mode darkokai darkokai-theme monokai-alt-theme monokai-theme matlab-mode auctex neotree)))
+    (markdown-mode ws-butler drtr-indent company company-mode darkokai darkokai-theme monokai-alt-theme monokai-theme matlab-mode auctex neotree)))
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -132,12 +134,11 @@
  ;; If there is more than one, they won't work right.
  )
 
-
 ;;complete anything
 (add-hook 'after-init-hook 'global-company-mode)
 
-;;floding
-(add-hook 'c-mode-common-hook   'hs-minor-mode)
+;;folding
+(add-hook 'c-mode-common-hook 'hs-minor-mode)
 
 ;;endline + indent
 (global-set-key (kbd "RET") 'newline-and-indent)
@@ -153,6 +154,7 @@
 
 ;; set appearance of a tab that is represented by 4 spaces
 (setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
 ;; Package: clean-aindent-mode
 (require 'clean-aindent-mode)
