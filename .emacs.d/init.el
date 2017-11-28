@@ -1,52 +1,123 @@
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-(setq package-list '(
-		     neotree
-		     matlab-mode
-		     chess
-		     auctex
-		     darkokai-theme
-		     company
-		     clean-aindent-mode
-		     dtrt-indent
-		     ws-butler
-		     ))
+(let ((package-list '(use-package)))
+  (progn
+    (unless package-archive-contents
+      (package-refresh-contents))
 
-(unless package-archive-contents
-  (package-refresh-contents))
+    (dolist (package package-list)
+      (unless (package-installed-p package)
+        (package-install package)))))
 
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-;disable suspend
-(global-unset-key [(control z)])
+(require 'use-package)
+(setq use-package-always-ensure t)
+(setq use-package-verbose t)
 
-;disable toolbars
-;; Turn off mouse interface early in startup to avoid momentary display
+(setq inhibit-startup-message t)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; No splash screen
-(setq inhibit-startup-message t)
-
 (show-paren-mode 1)
+
+(use-package neotree
+  :ensure t
+  :init
+  (setq neo-smart-open t)
+  (add-hook 'after-init-hook 'neotree-show t)
+  :config
+  (global-set-key (kbd "<f8>") 'neotree-toggle)
+  )
+
+(use-package darkokai-theme
+  :ensure t
+  :init
+  (load-theme 'darkokai t)
+  )
+
+(use-package tex
+  :ensure auctex
+  )
+
+(use-package clean-aindent-mode
+  :init
+  (add-hook 'prog-mode-hook 'clean-aindent-mode)
+  )
+
+(use-package ws-butler
+  :init
+  (add-hook 'c-mode-common-hook 'ws-butler-mode)
+  )
+
+(use-package dtrt-indent
+  :init
+  (dtrt-indent-mode 1)
+  )
+
+(use-package ace-window
+  :init
+  (global-set-key (kbd "M-p") 'ace-window)
+  (add-hook 'after-init-hook 'ace-window-display-mode)
+  )
+
+(use-package company
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  )
+
+(use-package helm
+  :init
+    (setq helm-autoresize-max-height 40)
+    (setq helm-autoresize-min-height 20)
+  :diminish helm-mode
+  :demand
+  :bind (("M-x" . helm-M-x)
+         ("M-y" . helm-show-kill-ring)
+         ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("C-x c o" . helm-occur))
+  :config
+  (require 'helm-config)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-t") 'helm-select-action)
+  (setq helm-split-window-in-side-p t)
+
+  (setq helm-buffers-fuzzy-matching t
+	helm-move-to-line-cycle-in-source t
+	helm-ff-file-name-history-use-recentf t)
+
+  (helm-autoresize-mode 1)
+  (helm-mode 1)
+  )
+
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-visualizer-diff t)
+  )
+
+;disable suspend
+(global-unset-key [(control z)])
+(global-unset-key (kbd "C-x C-c"))
 
 (setq backup-directory-alist
       `((".*" . ,"~/.emacs.d/tmp/")))
 (setq auto-save-file-name-transforms
       `((".*" ,"~/.emacs.d/tmp/" t)))
 
-(global-set-key (kbd "C-x w") 'webjump)
 
+
+(global-set-key (kbd "C-x w") 'webjump)
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
 (eval-after-load "webjump"
@@ -111,9 +182,7 @@
 
 (global-set-key (kbd "<C-S-down>") 'move-line-down)
 (global-set-key (kbd "<C-S-up>") 'move-line-up)
-(global-set-key (kbd "<f8>") 'neotree-toggle)
 
-(load-theme 'darkokai t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -125,17 +194,13 @@
     ("6ee6f99dc6219b65f67e04149c79ea316ca4bcd769a9e904030d38908fd7ccf9" "8ed752276957903a270c797c4ab52931199806ccd9f0c3bb77f6f4b9e71b9272" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode ws-butler drtr-indent company company-mode darkokai darkokai-theme monokai-alt-theme monokai-theme matlab-mode auctex neotree)))
- '(send-mail-function (quote mailclient-send-it)))
+    (ace-window ws-butler drtr-indent company company-mode darkokai darkokai-theme monokai-alt-theme monokai-theme neotree))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;;complete anything
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;;folding
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
@@ -156,13 +221,3 @@
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
 
-;; Package: clean-aindent-mode
-(require 'clean-aindent-mode)
-(add-hook 'prog-mode-hook 'clean-aindent-mode)
-
-;; Package: dtrt-indent
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
-
-(require 'ws-butler)
-(add-hook 'c-mode-common-hook 'ws-butler-mode)
