@@ -1,0 +1,33 @@
+* Keybindings
+
+|        | Q               | W              | E                              | R                        | T               | Y              | U                    | I              | O                | P         | [            | ]                    |
+| C -    | Quoted-insert   | Kill-region    | End of line                    | BackwardSearch           | Transpose Chars | yank           | Universal-argument   | TAB            | Open-line        | Prev-Line | Escape       | Abort recursive edit |
+| M -    | Fill-Paragraph  | Save-Region    | Forward-sentence               | Movetowindow top/mid/bot | Transpose Words | Helm kill ring | word to Upper case   | tab-to-tabstop | set face         | -         | -            | -                    |
+| C-x    | Kbd-macro-query | Webjump        | Endcurrent macro and call last | - (rectangle )           | -               | -              | Undotree             | Insert File    | -                | -         | Backwardpage | Forward Page         |
+| C-x C- | Read-only-mode  | WriteFile      | eval-last-sexp                 | Helm Recentfiles         | Transpose Lines | -              | Region to upper case | Indent-rigidly | Delete blankline | Mark page | -            | -                    |
+| C-c    | -               | WhitespaceMode | -                              | -                        | -               | -              | -                    | -              | -                | -         | -            | -                    |
+| C-c C- | -               | -              | -                              | -                        | -               | -              | -                    | -              | -                | -         | -            | -                    |
+| C-z    | -               | -              | -                              | -                        | -               | -              | -                    | -              | -                | -         | -            | -                    |
+| C-z C- | -               | -              | -                              | -                        | -               | -              | -                    | -              | -                | -         | -            | -                    |
+-
+|        | A                         | S               | D           | F               | G      | H                   | J                       | K             | L                   | ;                  | '                        |   |
+| C -    | Beginning of Line         | Search          | Delete-char | Forward-Char    | Cancel | help prefix         | newline and indent      | kill line     | Recenter top bottom | -                  | comment to next line     |   |
+| M -    | Move to start of sentence | Prefix          | Kill-word   | Forward-Word    | Prefix | Mark Paragraph      | indent new comment line | kill Sentence | Word to lower Case  | comment-dwim       | comment to previous line |   |
+| C-x    | Prefix                    | SaveSomebuffers | dired       | Set fill column | -      | Select while buffer | -                       | kill-buffer   | count lines page    | comment-set-column | next-error               |   |
+| C-x C- |                           |                 |             |                 |        |                     |                         | prefix        |                     |                    |                          |   |
+| C-c    | -                         | -               | -           | -               | -      | -                   | -                       | -             | -                   | -                  | -                        | - |
+| C-c C- | -                         | -               | -           | -               | -      | -                   | -                       | -             | -                   | -                  | -                        | - |
+| C-z    | -                         | -               | -           | -               | -      | -                   | -                       | -             | -                   | -                  | -                        | - |
+| C-z C- | -                         | -               | -           | -               | -      | -                   | -                       | -             | -                   | -                  | -                        | - |
+-
+|        | Z           | X      | C                   | V             | B             | N         | M                            | , | . | / |   |   |
+| C -    | prefix      | prefix | prefix              | scrollup      | backward char | next line | Return and indent            |   |   |   |   |   |
+| M -    | zap-to-char | M-x    | Capitalize word     | scrolldown    | backward word | -         | Move to first non white char |   |   |   |   |   |
+| C-x    | repeat      | -      | helm commadn prefix | vc-prefix-map | helm mini     | prefix    | compose mail                 |   |   |   |   |   |
+| C-x C- |             |        |                     |               |               |           |                              |   |   |   |   |   |
+| C-c    |             |        |                     |               |               |           |                              |   |   |   |   |   |
+| C-c C- |             |        |                     |               |               |           |                              |   |   |   |   |   |
+| C-c    | -           | -      | -                   | -             | -             | -         | -                            | - | - | - | - | - |
+| C-c C- | -           | -      | -                   | -             | -             | -         | -                            | - | - | - | - | - |
+| C-z    | -           | -      | -                   | -             | -             | -         | -                            | - | - | - | - | - |
+| C-z C- | -           | -      | -                   | -             | -             | -         | -                            | - | - | - | - | - |
