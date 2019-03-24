@@ -40,11 +40,6 @@ values."
      html
      csv
      python
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      helm
      better-defaults
      emacs-lisp
@@ -52,26 +47,24 @@ values."
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      syntax-checking
      version-control
-     c-c++
      markdown
      shell-scripts
      latex
      github
      ipython-notebook
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support nil
+            c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t)
-
+     pdf-tools
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -275,16 +268,16 @@ values."
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
-   ;; '(:relative nil
-   ;;   :disabled-for-modes dired-mode
-   ;;                       doc-view-mode
-   ;;                       markdown-mode
-   ;;                       org-mode
-   ;;                       pdf-view-mode
-   ;;                       text-mode
-   ;;   :size-limit-kb 1000)
-   ;; (default nil)
    dotspacemacs-line-numbers 'relative
+   ;; '(:relative t
+   ;;             :disabled-for-modes dired-mode
+   ;;             doc-view-mode
+   ;;             ;; markdown-mode
+   ;;             ;; org-mode
+   ;;             pdf-view-mode
+   ;;             text-mode
+   ;;             :size-limit-kb 1000)
+
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -315,34 +308,23 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'all
    )
 
   )
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+;;   "Initialization function for user code.
+;; It is called immediately after `dotspacemacs/init', before layer configuration
+;; executes.
+;;  This function is mostly useful for variables that need to be set
+;; before packages are loaded. If you are unsure, you should try in setting them in
+;; `dotspacemacs/user-config' first."
   )
 
 (defun dotspacemacs/user-config ()
   (setq-default flycheck-disabled-checkers '(c/c++-clang))
-  (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
-  (add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
-  (setq evil-want-fine-undo nul)
-  (setq-default dotspacemacs-configuration-layers
-                '((c-c++ :variables
-                         c-c++-default-mode-for-headers 'c++-mode)))
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+  (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -356,7 +338,7 @@ you should place your code here."
  '(evil-want-fine-undo t)
  '(package-selected-packages
    (quote
-    (cargo toml-mode racer flycheck-rust rust-mode yaml-mode docker tablist dockerfile-mode docker-tramp company-go go-guru go-eldoc go-mode ein request-deferred websocket deferred livid-mode json-mode js2-refactor company-tern web-beautify skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode js-doc tern coffee-mode insert-shebang fish-mode company-shell company-quickhelp vmd-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht disaster company-emacs-eclim eclim company-c-headers company-auctex cmake-mode clang-format auctex-latexmk auctex git-gutter-fringe flycheck-pos-tip git-gutter-fringe+ fringe-helper git-gutter+ git-gutter pos-tip flycheck diff-hl company-web web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-completion-data yasnippet-snippets unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete csv-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (xterm-color shell-pop pdf-tools multi-term eshell-z eshell-prompt-extras esh-help cargo toml-mode racer flycheck-rust rust-mode yaml-mode docker tablist dockerfile-mode docker-tramp company-go go-guru go-eldoc go-mode ein request-deferred websocket deferred livid-mode json-mode js2-refactor company-tern web-beautify skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode js-doc tern coffee-mode insert-shebang fish-mode company-shell company-quickhelp vmd-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht disaster company-emacs-eclim eclim company-c-headers company-auctex cmake-mode clang-format auctex-latexmk auctex git-gutter-fringe flycheck-pos-tip git-gutter-fringe+ fringe-helper git-gutter+ git-gutter pos-tip flycheck diff-hl company-web web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-completion-data yasnippet-snippets unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete csv-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
