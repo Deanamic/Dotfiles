@@ -51,17 +51,24 @@ ZSH_THEME="bullet-train"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    dirhistory
+    history
 
-alias g++="g++ -O2 -g"
-alias debug++="g++ -D_GLIBCXX_DEGUB -g"
+  git
+  zsh-syntax-highlighting
+)
+
+#alias g++="g++ -O2 -g"
+# alias debug++="g++ -D_GLIBCXX_DEGUB -g"
 #alias p2++="g++ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-uninitialized-Wno-sign-compare -std=c++0x -g"
 alias git="hub"
 
 
 export HISTCONTROL=ignoreboth:erasedups
-export TERM=rxvt-unicode
+export TERM=xterm-256color
 export COLORTERM=rxvt-unicode-256color
+export MAGICK_OCL_DEVICE=OFF
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -108,3 +115,18 @@ LC_MONETARY="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
 LC_ALL=
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+export MATLAB_LOG_DIR='/home/dean/.matlab/Log'
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/dean/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
