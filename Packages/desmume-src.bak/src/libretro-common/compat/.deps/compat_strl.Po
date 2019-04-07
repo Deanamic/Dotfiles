@@ -1,0 +1,67 @@
+../../libretro-common/compat/compat_strl.o: \
+ ../../libretro-common/compat/compat_strl.c /usr/include/stdc-predef.h \
+ /usr/include/ctype.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
+ /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ ../../../src/libretro-common/include/compat/strl.h /usr/include/string.h \
+ /usr/include/bits/libc-header-start.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include/stddef.h \
+ /usr/include/strings.h \
+ ../../../src/libretro-common/include/retro_common_api.h \
+ ../../../src/libretro-common/include/compat/posix_string.h \
+ ../../../src/libretro-common/include/retro_assert.h \
+ /usr/include/assert.h
+
+/usr/include/stdc-predef.h:
+
+/usr/include/ctype.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/bits/long-double.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/bits/uintn-identity.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/__locale_t.h:
+
+../../../src/libretro-common/include/compat/strl.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/libc-header-start.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include/stddef.h:
+
+/usr/include/strings.h:
+
+../../../src/libretro-common/include/retro_common_api.h:
+
+../../../src/libretro-common/include/compat/posix_string.h:
+
+../../../src/libretro-common/include/retro_assert.h:
+
+/usr/include/assert.h:
