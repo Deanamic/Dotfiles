@@ -1,18 +1,1 @@
-#TabsToolbar {
-
-    visibility: collapse !important;
-}
-
-#titlebar {
-
-    display: none;
-}
-
-#sidebar-header {
-
-    display: none !important;
-}
-
-#contentAreaContextMenu {
-    margin-left: 4px;
-}
+../../.mozilla/firefox/7tjb7nzr.default/chrome/userChrome.css
