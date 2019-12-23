@@ -1,8 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/home/dean/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/dean///.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -56,6 +55,12 @@ plugins=(
     history
     extract
     git
+    git-extras
+    npm
+    copyfile
+    docker
+    sudo
+
   ##zsh-syntax-highlighting
 )
 
@@ -68,7 +73,6 @@ plugins=(
 export HISTCONTROL=ignoreboth:erasedups
 export TERM=xterm-256color
 export COLORTERM=rxvt-unicode-256color
-export MAGICK_OCL_DEVICE=OFF
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -117,11 +121,12 @@ LC_TIME="en_US.UTF-8"
 LC_ALL=
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+export _JAVA_AWT_WM_NONREPARENTING=1
 export MATLAB_LOG_DIR='/home/dean/.matlab/Log'
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -141,3 +146,6 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh

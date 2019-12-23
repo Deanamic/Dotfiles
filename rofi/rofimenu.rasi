@@ -1,7 +1,7 @@
 configuration {
-	me-select-entry:	"MouseSecondary";
-	me-accept-entry:	"MousePrimary";
-	scroll-method:      1;
+  me-select-entry:	"MouseSecondary";
+  me-accept-entry:	"MousePrimary";
+  scroll-method:      1;
     show-icons:         true;
     sidebar-mode:		true;
     kb-custom-1:        "";
@@ -40,10 +40,10 @@ configuration {
     selected-urgent-background:  @urgent-foreground;
     selected-urgent-foreground:  @urgent-background;
 
-    font:                        "xos4 Terminus 20px";
+    font:                        "SF Pro Display 20px";
     text-color:                  @foreground;
 
-	margin:                      0px;
+  margin:                      0px;
     border:                      0px;
     padding:                     0px;
     spacing:                     0px;
@@ -69,47 +69,47 @@ element.selected.urgent {
     text-color:       @selected-urgent-foreground;
 }
 window {
-	location:		northwest;
-	anchor:			northwest;
-	x-offset:		0;
-	y-offset:		24;
-	width:			60ch;
+  location:		northwest;
+  anchor:			northwest;
+  x-offset:		0;
+  y-offset:		24;
+  width:			60ch;
 }
 mainbox {
-	orientation:	horizontal;
-	children:		[ sidebar, vertibox ];
+  orientation:	horizontal;
+  children:		[ sidebar, vertibox ];
 }
 vertibox {
-	orientation:	vertical;
-	children:		[ inputbar, listview ];
-	background-color:	@background;
+  orientation:	vertical;
+  children:		[ inputbar, listview ];
+  background-color:	@background;
 }
 inputbar {
-	children:		[ entry, ci ];
+  children:		[ entry, ci ];
 }
 entry {
-	padding:		@addpadding;
+  padding:		@addpadding;
 }
 listview {
-	lines:			20;
-	fixed-height:	false;
-	dynamic:		false;
-	scrollbar:		true;
+  lines:			20;
+  fixed-height:	false;
+  dynamic:		false;
+  scrollbar:		true;
 }
 scrollbar {
-	width:			1ch;
-	handle-color:	@selected;
+  width:			1ch;
+  handle-color:	@selected;
 }
 element {
-	padding:		@addpadding;
+  padding:		@addpadding;
 }
 sidebar {
-	orientation:	vertical;
+  orientation:	vertical;
 }
 button {
-	horizontal-align:	0;
-	expand:			false;
-	padding:		@addpadding;
-	width:			18ch;
-	background-color:	@background;
+  horizontal-align:	0;
+  expand:			false;
+  padding:		@addpadding;
+  width:			18ch;
+  background-color:	@background;
 }

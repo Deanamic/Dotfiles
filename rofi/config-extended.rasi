@@ -1,5 +1,5 @@
 configuration {
-    modi: 				"drun";
+    modi:         "drun";
     me-select-entry:	"MouseSecondary";
     me-accept-entry:	"MousePrimary";
     scroll-method:      1;
@@ -20,7 +20,7 @@ configuration {
     selected-urgent-background:  @urgent-foreground;
     selected-urgent-foreground:  @urgent-background;
 
-    font:                        "xos4 Terminus 18px";
+    font:                        "SF Pro Display 18px";
     text-color:                  @foreground;
 
     border:                      0px;
@@ -32,7 +32,7 @@ window {
     width:            200px;
     background-color: @background;
     padding:          4px;
-    y-offset:		  25px;
+    y-offset:     25px;
 }
 listview {
     lines:        17;

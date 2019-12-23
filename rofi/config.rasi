@@ -30,7 +30,7 @@ configuration {
   spacing: 0;
   background-color: transparent;
 
-  font: "SF Display Pro 14";
+  font: "SF Pro Display 14";
   text-color: @text;
 }
 
